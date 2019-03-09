@@ -5,9 +5,9 @@ class App extends Component {
   
   render() {
     return (
-      <React.Fragment>
-      <Categories />
-      </React.Fragment>
+      <div className="container">
+        <Categories />
+      </div>
     );
   }
 }

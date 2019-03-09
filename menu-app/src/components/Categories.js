@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Category from './Category';
 
 class Categories extends Component {
 
@@ -23,18 +24,10 @@ class Categories extends Component {
     render() {
         
         return (
-         <div className="categories"> 
+         <div  className="categories accordion" id="accordionExample"> 
            
-          {this.state.categories.map((category,i) => <div key={i} >
-            {category.name}
-            {category.items.map((items,x) => <div key={x} >
-                <div>{items.name}</div>
-                <div>{items.description}</div>
-                <div>{items.price}</div>
-            </div>)}
-
-          </div>)}
-
+          
+            <Category categories={this.state.categories}/>
          </div>
         );
     }

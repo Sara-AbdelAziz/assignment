@@ -4,6 +4,9 @@
   "private": true,
   "homepage": "http://Sara-AbdelAziz.github.io/assignment",
   "dependencies": {
+    "bootstrap": "^4.3.1",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.14.7",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-scripts": "2.1.8"
