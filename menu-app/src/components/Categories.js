@@ -27,8 +27,12 @@ class Categories extends Component {
            
           {this.state.categories.map((category,i) => <div key={i} >
             {category.name}
-            {category.items.map((items,x) => <div key={x} >{items.name}</div>)}
-            <hr/>
+            {category.items.map((items,x) => <div key={x} >
+                <div>{items.name}</div>
+                <div>{items.description}</div>
+                <div>{items.price}</div>
+            </div>)}
+
           </div>)}
 
          </div>
