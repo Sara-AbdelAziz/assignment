@@ -1,13 +1,15 @@
 {
   "main.css": "/assignment/static/css/main.29251f73.chunk.css",
-  "main.js": "/assignment/static/js/main.dbca21a1.chunk.js",
-  "main.js.map": "/assignment/static/js/main.dbca21a1.chunk.js.map",
+  "main.js": "/assignment/static/js/main.842635d9.chunk.js",
+  "main.js.map": "/assignment/static/js/main.842635d9.chunk.js.map",
   "runtime~main.js": "/assignment/static/js/runtime~main.405b42a8.js",
   "runtime~main.js.map": "/assignment/static/js/runtime~main.405b42a8.js.map",
-  "static/js/2.aa7a0768.chunk.js": "/assignment/static/js/2.aa7a0768.chunk.js",
-  "static/js/2.aa7a0768.chunk.js.map": "/assignment/static/js/2.aa7a0768.chunk.js.map",
+  "static/css/2.cac4c2fa.chunk.css": "/assignment/static/css/2.cac4c2fa.chunk.css",
+  "static/js/2.991dac92.chunk.js": "/assignment/static/js/2.991dac92.chunk.js",
+  "static/js/2.991dac92.chunk.js.map": "/assignment/static/js/2.991dac92.chunk.js.map",
   "index.html": "/assignment/index.html",
-  "precache-manifest.e31c7d465cddcbd88860844580d0e18b.js": "/assignment/precache-manifest.e31c7d465cddcbd88860844580d0e18b.js",
+  "precache-manifest.b03e650d0bb975ce89fc901ba5429a0d.js": "/assignment/precache-manifest.b03e650d0bb975ce89fc901ba5429a0d.js",
   "service-worker.js": "/assignment/service-worker.js",
+  "static/css/2.cac4c2fa.chunk.css.map": "/assignment/static/css/2.cac4c2fa.chunk.css.map",
   "static/css/main.29251f73.chunk.css.map": "/assignment/static/css/main.29251f73.chunk.css.map"
 }
