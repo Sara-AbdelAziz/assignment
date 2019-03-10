@@ -3,7 +3,7 @@
 
 - source code: on the master branch
 
-- Features:
+- Features*:
 	• Show the menu’s different categories and under each category show the available items. (Done)
 	• For each item show its price. (Done)
 	• User Role: Can View the menu
@@ -13,4 +13,6 @@
             • Can add new Items.
 			• Can Edit Categories or Item's names and their prices.(Done)
 			• Can delete Categories/Items.(Done)
+
+*Note: I used jsonplaceholder 
 
