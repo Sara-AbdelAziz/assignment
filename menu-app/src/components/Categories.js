@@ -18,7 +18,11 @@ class Categories extends Component {
     componentDidMount(){
         axios.get('https://my-json-server.typicode.com/Sara-AbdelAziz/data/categories')
            .then(res => {
-            res.data.map(c => c.editing=false);
+            res.data.map(c => {
+                c.editing=false;
+                c.items.map(i => i.editing=false);
+            
+            });
             this.setState({  categories: res.data});
             
           })
@@ -72,6 +76,19 @@ class Categories extends Component {
         });
         this.setState({categories:editedCategories});
     }
+    handleEditItem= (item,categoryId) =>{
+        let editedCategories= this.state.categories.filter (c => {
+            if(c.id==categoryId){
+                c.items.filter(i => {
+                    if(i.id==item.id){
+                        i.editing=true;
+                    }
+                });
+            }
+            return c;
+        });
+        this.setState({categories:editedCategories});
+    }
 
     handleSave= category =>{
         let editedCategories= this.state.categories.filter (c => {
@@ -82,22 +99,57 @@ class Categories extends Component {
         });
         this.setState({categories:editedCategories});
         axios.put(`https://my-json-server.typicode.com/Sara-AbdelAziz/data/categories/${category.id}`, category).then(response => {
-            console.log("aaaaaaaa "+response.data.id);
+        })
+    }
+
+    handleSaveItem= (item,categoryId) =>{
+        let editedCategories= this.state.categories.filter (c => {
+            if(c.id==categoryId){
+                c.items.filter(i => {
+                    if(i.id==item.id){
+                        i.editing=false;
+                    }
+                });
+            }
+            return c;
+        });
+        this.setState({categories:editedCategories});
+        axios.put(`https://my-json-server.typicode.com/Sara-AbdelAziz/data/categories/${categoryId}?item.${item.id}`, item).then(response => {
         })
     }
 
 
     handleChangeCategory= (e,category)=> {
         category.name=e.target.value;
-        console.log("aaaaaaaaaaaaaaaaaaaaa "+this.state.abc);
         let editedCategories= this.state.categories.filter (c => {
             if(c.id==category.id){
                     c.name=e.target.value;
             }
             return c;
         });
-        
         this.setState({categories:editedCategories});
+    }
+
+    handleChangeItem =(e,item,type,categoryId)=>{
+        console.log(type);
+        if(type=="name"){
+            item.name=e.target.value;
+        }
+        let editedCategories= this.state.categories.filter (c => {
+            if(c.id==categoryId){
+                    c.items.filter(i => {
+                        if(i.id==item.id){
+                            if(type=="name"){
+                                i.name=e.target.value;
+                            }
+                        }
+                    });
+            }
+            return c;
+        });
+        this.setState({categories:editedCategories});
+
+
 
 
     }
@@ -119,7 +171,10 @@ class Categories extends Component {
                  categories={this.state.categories}
                  onEdit={this.handleEdit} 
                  onSave={this.handleSave} 
-                 onChangeCategory={this.handleChangeCategory} />
+                 onSaveItem={this.handleSaveItem}
+                 onEditItem={this.handleEditItem}
+                 onChangeCategory={this.handleChangeCategory}
+                 onChangeItem={this.handleChangeItem} />
                  
             </div>
          </div>

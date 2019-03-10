@@ -22,7 +22,11 @@ const Category = (props) => (
 
         <div  id={'collapse'+i} className="collapse" aria-labelledby="{'heading'+i}" data-parent="#accordionExample">
             <div className="card-body">
-                <Item items={category.items}/>
+                <Item items={category.items} 
+                onEditItem={props.onEditItem} 
+                onSaveItem={props.onSaveItem} 
+                onChangeItem={props.onChangeItem}
+                 categoryId={category.id}/>
             </div>
         </div>
       </div>)}
