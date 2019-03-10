@@ -8,11 +8,11 @@ const Category = (props) => (
         <div className="card-header"  id={'heading'+i}>
             
 
-            {category.editing? <div><input type="text" value={category.name} onChange={(e) => props.onChangeCategory(e,category)}/><button className="sm-font" onClick={() => props.onSave(category)}>save</button></div> : <h2 className="mb-0">
+            {category.editing? <div><input type="text" className="width-70" value={category.name} onChange={(e) => props.onChangeCategory(e,category)}/><button className="sm-font float-end" onClick={() => props.onSave(category)}>save</button></div> : <h2 className="mb-0">
             <button className="btn btn-link collapsed" type="button" data-toggle="collapse" data-target={'#collapse'+i} aria-expanded="false" aria-controls={'collapse'+i}>
                 {category.name}
             </button>
-            <button onClick={() => props.onEdit(category)} className="sm-font">edit</button>
+            <button onClick={() => props.onEdit(category)} className="sm-font float-end">edit</button>
             </h2>}
 
             

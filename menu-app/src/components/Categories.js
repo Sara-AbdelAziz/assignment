@@ -141,6 +141,10 @@ class Categories extends Component {
                         if(i.id==item.id){
                             if(type=="name"){
                                 i.name=e.target.value;
+                            }else if(type=="description"){
+                                i.description=e.target.value;
+                            }else if(type=="price"){
+                                i.price=e.target.value;
                             }
                         }
                     });
