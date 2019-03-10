@@ -48,9 +48,8 @@ class Categories extends Component {
                 })  
                 .then(data => {
                     console.log(data);
-                    let oldComments = this.state.categories;
-                    console.log(oldComments);
-                    this.setState({categories:oldComments.concat(data),currentCategory:null});
+                    let oldCategories = this.state.categories;
+                    this.setState({categories:oldCategories.concat(data),currentCategory:null});
                 }) 
                 .catch(err => {
                     console.log(err);
