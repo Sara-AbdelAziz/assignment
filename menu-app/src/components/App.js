@@ -7,7 +7,9 @@ class App extends Component {
   render() {
     return (
       <div className="container">
-        <Categories />
+        <div className=" m-tb-20">
+          <Categories />
+        </div>
       </div>
     );
   }

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Category from './Category';
-//import CategoriesService from '../services/CategoriesService';
 import axios from 'axios';
 
 
@@ -76,6 +75,18 @@ class Categories extends Component {
         });
         this.setState({categories:editedCategories});
     }
+    handleDelete= category =>{
+        console.log(category.id);
+        axios.delete(`https://my-json-server.typicode.com/Sara-AbdelAziz/data/categories/${category.id}`)
+        .then(res => {})
+        let editedCategories= this.state.categories.filter (c => {
+            return  c.id!=category.id;
+          });
+        this.setState({categories:editedCategories});
+    }
+
+
+    
     handleEditItem= (item,categoryId) =>{
         let editedCategories= this.state.categories.filter (c => {
             if(c.id==categoryId){
@@ -89,6 +100,24 @@ class Categories extends Component {
         });
         this.setState({categories:editedCategories});
     }
+
+    handleDeleteItem= (item,categoryId) =>{
+        axios.delete(`https://my-json-server.typicode.com/Sara-AbdelAziz/data/categories/${categoryId}?item.${item.id}`)
+        .then(res => {})
+        let editedCategories= this.state.categories.filter (c => {
+            if(c.id==categoryId){
+              let deletedItem=  c.items.filter(i => {
+                     console.log(item.id+ " "+i.id);
+                      return  i.id!=item.id;
+                });
+                c.items=deletedItem;
+            }
+            return c;
+        });
+        this.setState({categories:editedCategories});
+    }
+
+
 
     handleSave= category =>{
         let editedCategories= this.state.categories.filter (c => {
@@ -152,10 +181,6 @@ class Categories extends Component {
             return c;
         });
         this.setState({categories:editedCategories});
-
-
-
-
     }
 
     render() {
@@ -177,8 +202,11 @@ class Categories extends Component {
                  onSave={this.handleSave} 
                  onSaveItem={this.handleSaveItem}
                  onEditItem={this.handleEditItem}
+                 onDeleteItem={this.handleDeleteItem}
                  onChangeCategory={this.handleChangeCategory}
-                 onChangeItem={this.handleChangeItem} />
+                 onChangeItem={this.handleChangeItem} 
+                 onDelete={this.handleDelete}
+                 />
                  
             </div>
          </div>

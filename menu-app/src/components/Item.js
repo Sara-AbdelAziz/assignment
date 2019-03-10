@@ -8,7 +8,10 @@ const Item = (props) => (
         <div className="col-lg-3">Name:</div>
         {item.editing? <div className="col-lg-9"><input type="text" className="width-70" value={item.name} onChange={(e) => props.onChangeItem(e,item,"name",props.categoryId)}/>
         <button className="sm-font float-end" onClick={() => props.onSaveItem(item,props.categoryId)}>save</button></div> : 
-        <div className="col-lg-9">{item.name}<button onClick={() => props.onEditItem(item,props.categoryId)} className="sm-font float-end">edit</button></div>}
+        <div className="col-lg-9">{item.name}
+        <button onClick={() => props.onEditItem(item,props.categoryId)} className="sm-font float-end m-lr-5">edit</button>
+        <button onClick={() => props.onDeleteItem(item,props.categoryId)} className="sm-font float-end m-lr-5">delete</button>
+        </div>}
     </div>
     <div className="row">
         <div className="col-lg-3">Description:</div>

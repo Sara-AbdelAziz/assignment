@@ -12,7 +12,8 @@ const Category = (props) => (
             <button className="btn btn-link collapsed" type="button" data-toggle="collapse" data-target={'#collapse'+i} aria-expanded="false" aria-controls={'collapse'+i}>
                 {category.name}
             </button>
-            <button onClick={() => props.onEdit(category)} className="sm-font float-end">edit</button>
+            <button onClick={() => props.onEdit(category)} className="sm-font float-end m-lr-5">edit</button>
+            <button onClick={() => props.onDelete(category)} className="sm-font float-end m-lr-5">delete</button>
             </h2>}
 
             
@@ -24,7 +25,8 @@ const Category = (props) => (
             <div className="card-body">
                 <Item items={category.items} 
                 onEditItem={props.onEditItem} 
-                onSaveItem={props.onSaveItem} 
+                onSaveItem={props.onSaveItem}
+                onDeleteItem={props.onDeleteItem}
                 onChangeItem={props.onChangeItem}
                  categoryId={category.id}/>
             </div>
