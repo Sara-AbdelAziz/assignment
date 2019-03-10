@@ -3,14 +3,21 @@ import Item from './Item';
 
 const Category = (props) => (
  
- <div>
+ <div>            
      {props.categories.map((category,i) => <div key={i} className="card">
         <div className="card-header"  id={'heading'+i}>
-            <h2 className="mb-0">
+            
+
+            {category.editing? <div><input type="text" value={category.name} onChange={(e) => props.onChangeCategory(e,category)}/><button className="sm-font" onClick={() => props.onSave(category)}>save</button></div> : <h2 className="mb-0">
             <button className="btn btn-link collapsed" type="button" data-toggle="collapse" data-target={'#collapse'+i} aria-expanded="false" aria-controls={'collapse'+i}>
                 {category.name}
             </button>
-            </h2>
+            <button onClick={() => props.onEdit(category)} className="sm-font">edit</button>
+            </h2>}
+
+            
+            
+
         </div>
 
         <div  id={'collapse'+i} className="collapse" aria-labelledby="{'heading'+i}" data-parent="#accordionExample">
