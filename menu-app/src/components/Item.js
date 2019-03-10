@@ -1,7 +1,6 @@
 import React from 'react';
 
 const Item = (props) => (
- 
  <div>
     {props.items.map((item,x) => <div key={x} >
     <div className="row">
@@ -25,12 +24,8 @@ const Item = (props) => (
         <button className="sm-font none" onClick={() => props.onSaveItem(item,props.categoryId)}>save</button></div> : 
         <div className="col-lg-9">{item.price}<button onClick={() => props.onEditItem(item,props.categoryId)} className="sm-font none">edit</button></div>}
     </div>
-
-    
-    
         <hr/>
     </div>)}
  </div>
 );
-
 export default Item;

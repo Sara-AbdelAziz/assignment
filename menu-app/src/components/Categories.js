@@ -8,30 +8,25 @@ class Categories extends Component {
         super();
         this.state = {
             categories: [],
-            currentCategory:null,
-            
-            
+            currentCategory:null
         };
     }
-
+/*get categories*/
     componentDidMount(){
         axios.get('https://my-json-server.typicode.com/Sara-AbdelAziz/data/categories')
            .then(res => {
             res.data.map(c => {
                 c.editing=false;
                 c.items.map(i => i.editing=false);
-            
             });
             this.setState({  categories: res.data});
-            
           })
-          
     }
     handleChange = event => {
         this.setState({ currentCategory: event.target.value });
     }
 
-
+/*add category*/   
     handleSubmit = event => {       
             event.preventDefault();
             event.target.parentNode.querySelector('input').value=null;
@@ -66,6 +61,7 @@ class Categories extends Component {
             }   
     }
 
+/*edit category*/    
     handleEdit= category =>{
         let editedCategories= this.state.categories.filter (c => {
             if(c.id==category.id){
@@ -75,6 +71,29 @@ class Categories extends Component {
         });
         this.setState({categories:editedCategories});
     }
+    handleSave= category =>{
+        let editedCategories= this.state.categories.filter (c => {
+            if(c.id==category.id){
+                    c.editing=false;
+            }
+            return c;
+        });
+        this.setState({categories:editedCategories});
+        axios.put(`https://my-json-server.typicode.com/Sara-AbdelAziz/data/categories/${category.id}`, category).then(response => {
+        })
+    }
+    handleChangeCategory= (e,category)=> {
+        category.name=e.target.value;
+        let editedCategories= this.state.categories.filter (c => {
+            if(c.id==category.id){
+                    c.name=e.target.value;
+            }
+            return c;
+        });
+        this.setState({categories:editedCategories});
+    }
+
+/*delete category*/     
     handleDelete= category =>{
         console.log(category.id);
         axios.delete(`https://my-json-server.typicode.com/Sara-AbdelAziz/data/categories/${category.id}`)
@@ -86,7 +105,7 @@ class Categories extends Component {
     }
 
 
-    
+/*edit Item*/
     handleEditItem= (item,categoryId) =>{
         let editedCategories= this.state.categories.filter (c => {
             if(c.id==categoryId){
@@ -100,37 +119,6 @@ class Categories extends Component {
         });
         this.setState({categories:editedCategories});
     }
-
-    handleDeleteItem= (item,categoryId) =>{
-        axios.delete(`https://my-json-server.typicode.com/Sara-AbdelAziz/data/categories/${categoryId}?item.${item.id}`)
-        .then(res => {})
-        let editedCategories= this.state.categories.filter (c => {
-            if(c.id==categoryId){
-              let deletedItem=  c.items.filter(i => {
-                     console.log(item.id+ " "+i.id);
-                      return  i.id!=item.id;
-                });
-                c.items=deletedItem;
-            }
-            return c;
-        });
-        this.setState({categories:editedCategories});
-    }
-
-
-
-    handleSave= category =>{
-        let editedCategories= this.state.categories.filter (c => {
-            if(c.id==category.id){
-                    c.editing=false;
-            }
-            return c;
-        });
-        this.setState({categories:editedCategories});
-        axios.put(`https://my-json-server.typicode.com/Sara-AbdelAziz/data/categories/${category.id}`, category).then(response => {
-        })
-    }
-
     handleSaveItem= (item,categoryId) =>{
         let editedCategories= this.state.categories.filter (c => {
             if(c.id==categoryId){
@@ -146,19 +134,6 @@ class Categories extends Component {
         axios.put(`https://my-json-server.typicode.com/Sara-AbdelAziz/data/categories/${categoryId}?item.${item.id}`, item).then(response => {
         })
     }
-
-
-    handleChangeCategory= (e,category)=> {
-        category.name=e.target.value;
-        let editedCategories= this.state.categories.filter (c => {
-            if(c.id==category.id){
-                    c.name=e.target.value;
-            }
-            return c;
-        });
-        this.setState({categories:editedCategories});
-    }
-
     handleChangeItem =(e,item,type,categoryId)=>{
         console.log(type);
         if(type=="name"){
@@ -182,9 +157,24 @@ class Categories extends Component {
         });
         this.setState({categories:editedCategories});
     }
+/*delete Item*/    
+    handleDeleteItem= (item,categoryId) =>{
+        axios.delete(`https://my-json-server.typicode.com/Sara-AbdelAziz/data/categories/${categoryId}?item.${item.id}`)
+        .then(res => {})
+        let editedCategories= this.state.categories.filter (c => {
+            if(c.id==categoryId){
+              let deletedItem=  c.items.filter(i => {
+                     console.log(item.id+ " "+i.id);
+                      return  i.id!=item.id;
+                });
+                c.items=deletedItem;
+            }
+            return c;
+        });
+        this.setState({categories:editedCategories});
+    }
 
     render() {
-        
         return (
         <div>
             <form name="categoryForm" onSubmit={this.handleSubmit}>
@@ -194,8 +184,6 @@ class Categories extends Component {
                 <button type="submit">Add Category</button>
             </form>
             <div  className="categories accordion" id="accordionExample"> 
-            
-            
                 <Category editing={this.state.editing}
                  categories={this.state.categories}
                  onEdit={this.handleEdit} 
@@ -207,11 +195,9 @@ class Categories extends Component {
                  onChangeItem={this.handleChangeItem} 
                  onDelete={this.handleDelete}
                  />
-                 
             </div>
          </div>
         );
     }
 }
-
 export default Categories;
