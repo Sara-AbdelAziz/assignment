@@ -14,5 +14,5 @@
 			• Can Edit Categories or Item's names and their prices.(Done)
 			• Can delete Categories/Items.(Done)
 
-*Note: I used jsonplaceholder 
+*note: I used jsonplaceholder(https://jsonplaceholder.typicode.com/)
 
